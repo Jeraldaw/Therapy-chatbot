@@ -60,8 +60,8 @@ def load_llm_model(model_name, hf_token):
         pipeline = transformers.pipeline(
             "text-generation",
             model=model_name,
-            # Use bfloat16 for better performance on compatible GPUs
-            model_kwargs={"torch_dtype": torch.bfloat16},
+            # Changed to torch.float16 for broader compatibility and memory efficiency
+            model_kwargs={"torch_dtype": torch.float16},
             device_map="auto", # Automatically maps model layers to available devices
             # Pass the Hugging Face token for authentication, especially for gated models
             token=hf_token
